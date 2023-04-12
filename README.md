@@ -1,6 +1,7 @@
-# umi_music_player
+# UMI MUSIC PLAYER
 
-A new Flutter project.
+A music player created with the help of Flutter and Appwrite.
+This is a major project for my college semester.
 
 ## Getting Started
 
