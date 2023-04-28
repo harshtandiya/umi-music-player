@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: const [
                 Text(
-                  "Good Morning!",
+                  "Good Morning",
                   style: TextStyle(
                     fontSize: 20,
                     color: Color(0xFF30A5BD),
