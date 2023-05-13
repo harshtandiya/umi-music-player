@@ -6,6 +6,8 @@ class UAppTheme {
 
   static ThemeData baseTheme = ThemeData(
     // brightness: Brightness.dark,
+    primaryColorLight: const Color(0xFFEAF6F8),
+    primaryColor: const Color(_baseBlue),
     primarySwatch: const MaterialColor(_baseBlue, <int, Color>{
       50: Color(0xFFEAF6F8),
       100: Color(0xFFBFE3EB),
