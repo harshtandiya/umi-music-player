@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:umi_music_player/src/utils/theme.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:umi_music_player/views/SongDetailsPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +33,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _currentIndex = 0;
+  PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Container(
               height: 24,
             ),
-            const dailyRecommendation()
+            const DailyRecommendation()
           ],
         ),
       ),
@@ -54,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Padding bottomNavBar() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 32),
       child: ClipRRect(
         borderRadius: const BorderRadius.all(Radius.circular(16)),
         child: Container(
@@ -90,84 +92,99 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class dailyRecommendation extends StatelessWidget {
-  const dailyRecommendation({
+class DailyRecommendation extends StatelessWidget {
+  const DailyRecommendation({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(12)),
-        color: Color.fromARGB(255, 48, 165, 189),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 20.0,
-            spreadRadius: 0.0,
-            color: Color.fromRGBO(48, 165, 189, 0.3),
-          )
-        ],
-      ),
-      height: 120,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: const [
-                    Text(
-                      "Today's recommendation ",
-                      style: TextStyle(
-                          color: Colors.white, fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Are we still friends?",
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const Text(
-                      "Tyler the Creator",
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const SongDetailsPage(
+              songName: "Are we still friends?",
+              artistName: "Tyler the Creator",
+              albumCoverURL:
+                  'https://i.scdn.co/image/ab67616d0000b2737005885df706891a3c182a57',
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              child: Container(
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(16)),
-                    boxShadow: [
-                      BoxShadow(
-                        blurRadius: 7,
-                        spreadRadius: 0.0,
-                        color: Color.fromRGBO(0, 0, 0, 0.25),
-                      )
-                    ]),
-                child: Image.network(
-                    'https://i.scdn.co/image/ab67616d0000b2737005885df706891a3c182a57'),
-              ),
-            ),
+          ),
+        );
+      },
+      child: Container(
+        decoration: const BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(12)),
+          color: Color.fromARGB(255, 48, 165, 189),
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20.0,
+              spreadRadius: 0.0,
+              color: Color.fromRGBO(48, 165, 189, 0.3),
+            )
           ],
+        ),
+        height: 120,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: const [
+                      Text(
+                        "Today's recommendation ",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: const [
+                      Text(
+                        "Are we still friends?",
+                        style: TextStyle(
+                          fontSize: 18,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      Text(
+                        "Tyler the Creator",
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              ClipRRect(
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+                child: Container(
+                  decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                      boxShadow: [
+                        BoxShadow(
+                          blurRadius: 7,
+                          spreadRadius: 0.0,
+                          color: Color.fromRGBO(0, 0, 0, 0.25),
+                        )
+                      ]),
+                  child: Image.network(
+                      'https://i.scdn.co/image/ab67616d0000b2737005885df706891a3c182a57'),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
